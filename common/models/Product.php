@@ -1,32 +1,53 @@
 <?php
+
 namespace common\models;
 
 use Yii;
 
-class Product extends \yii\db\ActiveRecord
+class Product
 {
-    public $country;
-
-    public static function TableName()
-    {
-        return '{{yii_product}}';
+    public static function Product(){
+        return '{{product}}';
     }
 
     public function rules()
     {
         return [
-            [['name'], 'string', 'max' => 255],
-            [['active'], 'integer'],
-            [['country'], 'safe'],
+            [['ID'], 'integer'],
+            [['Name'], 'string', 'max' => 100],
+            [['ImagePreview'], 'string', 'max' => 255],
+            [['CardImagePreview'], 'string', 'max' => 255],
+            [['PreviewPC'], 'string', 'max' => 255],
+            [['PreviewMobile'], 'string', 'max' => 255],
+            [['Images'], 'string', 'max' => 255],
+            [['Description'], 'stream'],
+            [['Price'], 'float'],
+            [['Adaptive'], 'integer'],
+            [['IDlicense'], 'integer'],
+            [['IDuniqueness'], 'integer'],
+            [['SampleArchive'], 'string', 'max' => 255],
+            [['IDmoderation'], 'integer'],
+            [['Active'], 'integer'],
         ];
     }
 
-    public function attributeLabels()
-    {
+    public function attributeLabels(){
         return [
-            'id' => 'ID',
-            'name' => 'Название',
-            'active' => 'Стостояние_активности',
+            'ID' => 'ID',
+            'Name' => 'Название',
+            'ImagePreview' => 'Изображение превью',
+            'CardImagePreview' => 'Карточка товара',
+            'PreviewPC' => 'Превью для ПК',
+            'PreviewMobile' => 'Превью для телефона',
+            'Images' => 'Изображения',
+            'Description' => 'Описание',
+            'Price' => 'Цена',
+            'Adaptive' => 'Адаптивное',
+            'IDlicense' => 'Лицензия',
+            'IDuniqueness' => 'Уникальность',
+            'SampleArchive' => 'Архив',
+            'IDmoderation' => 'Модерация',
+            'Active' => 'Активное',
         ];
     }
 }
