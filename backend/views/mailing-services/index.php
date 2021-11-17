@@ -2,10 +2,10 @@
 use yii\grid\GridView;
 ?>
 <div class='container'>
-<h4>Категории</h4>
+<h4>Почтовые сервисы</h4>
 	<div class='col-md-12'>
 		<div class='col-md-3'>
-			<a href='/backend/web/category/create' class='btn btn-success'>Создать новую категорию</a>
+			<a href='/backend/web/mailing-services/create' class='btn btn-success'>Создать новый почтовый сервис</a>
 		</div>
 	</div>
 </div>
@@ -38,8 +38,8 @@ use yii\grid\GridView;
 			'value' => function($data)
 			{
 				return "
-					<a href='/backend/web/category/update?id={$data->ID}' class='btn btn-info glyphicon glyphicon-pencil'></a>
-					<a href='/backend/web/category/delete?id={$data->ID}' class='btn btn-danger glyphicon glyphicon-remove' onClick='return confirm(\"Удалить почтовый сервис?\") ? true : false;'></a>
+					<a href='/backend/web/mailing-services/update?id={$data->ID}' class='btn btn-info glyphicon glyphicon-pencil'></a>
+					<a href='/backend/web/mailing-services/delete?id={$data->ID}' class='btn btn-danger glyphicon glyphicon-remove' onClick='return confirm(\"Удалить почтовый сервис?\") ? true : false;'></a>
 				";
 			},
 			'format' => 'raw',

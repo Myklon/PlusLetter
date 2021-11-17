@@ -4,9 +4,9 @@ namespace common\models;
 
 use Yii;
 
-class Basket
+class Basket extends \yii\db\ActiveRecord
 {
-    public static function Basket(){
+    public static function TableName(){
         return '{{basket}}';
     }
 

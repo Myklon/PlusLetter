@@ -4,9 +4,9 @@ namespace common\models;
 
 use Yii;
 
-class Moderation
+class Moderation extends \yii\db\ActiveRecord
 {
-    public static function Moderation(){
+    public static function TableName(){
         return '{{moderation}}';
     }
 

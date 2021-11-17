@@ -3,11 +3,12 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
-class Category
+class Category extends \yii\db\ActiveRecord
 {
-    public static function Category(){
-        return '{{сategory}}';
+    public static function TableName(){
+        return '{{category}}';
     }
 
     public function rules()
@@ -27,5 +28,10 @@ class Category
             'Sort' => 'Порядок',
             'Active' => 'Активное',
         ];
+    }
+
+    public static function getAllCategory_ListArray()
+    {
+        return ArrayHelper::map(Category::find()->OrderBy(['Sort'=>SORT_DESC])->asArray()->all(),'ID','Name');
     }
 }

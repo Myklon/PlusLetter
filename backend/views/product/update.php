@@ -16,6 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'category_list' => $category_list,
         'category_list_active' => $category_list_active,
+        'mailingservices_list'=>$mailingservices_list,
+        'mailingservices_list_active'=>$mailingservices_list_active,
+        'mailsystems_list'=>$mailsystems_list,
+        'mailsystems_list_active'=>$mailsystems_list_active,
     ]) ?>
 
 </div>

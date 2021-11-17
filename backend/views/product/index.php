@@ -1,4 +1,6 @@
 <?php
+
+use common\models\License;
 use yii\grid\GridView;
 ?>
 <div class='container'>
@@ -7,8 +9,8 @@ use yii\grid\GridView;
 		<div class='col-md-3'>
 			<a href='/backend/web/product/create' class='btn btn-success'>Создать товар</a>
 		</div>
-		<div class='col-md-9'>
-			<?=$this->render('_form_search',['model'=>$model]);?>
+        <div class='col-md-9'>
+        <?=$this->render('_form_search',['model'=>$model]);?>
 		</div>
 	</div>
 </div>
@@ -19,34 +21,106 @@ use yii\grid\GridView;
         'class' => 'table table-condensed',
     ],
     'columns' => [
-        
-		[
-			'label' => 'Название товара',
-			'value' => function($data)
-			{
-				return "<a href='/product/{$data->url}' target='_blank'>{$data->name}</a>";
-			},
-			'format' => 'raw',
-		],
-		'price',
-		[
-			'label' => 'Изображение',
-			'value' => function($data)
-			{
-				return "<img src='/frontend/web/uploads/items/{$data->image}' width='50px'>";
-			},
-			'format' => 'raw',
-		],
+            'Name',
+        [
+            'label' => 'Превью изображение',
+            'value' => function($data)
+            {
+                return "<img src='/frontend/web/uploads/items/{$data->ImagePreview}' width='50px'>";
+            },
+            'format' => 'raw',
+        ],
+        [
+            'label' => 'Карточка товара',
+            'value' => function($data)
+            {
+                return "<img src='/frontend/web/uploads/items/{$data->CardImagePreview}' width='50px'>";
+            },
+            'format' => 'raw',
+        ],
+        [
+            'label' => 'Превью для компьютеров',
+            'value' => function($data)
+            {
+                return "<img src='/frontend/web/uploads/items/{$data->PreviewPC}' width='50px'>";
+            },
+            'format' => 'raw',
+        ],
+        [
+            'label' => 'Превью для телефонов',
+            'value' => function($data)
+            {
+                return "<img src='/frontend/web/uploads/items/{$data->PreviewMobile}' width='50px'>";
+            },
+            'format' => 'raw',
+        ],
+        [
+            'label' => 'Изображение в описании',
+            'value' => function($data)
+            {
+                return "<img src='/frontend/web/uploads/items/{$data->Images}' width='50px'>";
+            },
+            'format' => 'raw',
+        ],
+        'Description',
+		'Price',
+        [
+            'label' => 'Адаптивность',
+            'value' => function($data)
+            {
+                $active = ['Не адаптивное','Адаптивное'];
+                if($data->Adaptive==0)
+                {
+                    return "<span class='label label-danger'>Не адаптивное</span>";
+                }
+                if($data->Adaptive==1)
+                {
+                    return "<span class='label label-success'>Адаптивное</span>";
+                }
+            },
+            'format' => 'raw',
+        ],
+        [
+            'label' => 'Лицензия',
+            'value' => function($data)
+            {
+                $id_adaptive = $data->IDlicense;
+                $model_license = License::findOne($id_adaptive);
+                    return "<span>{$model_license->Name}</span>";
+            },
+            'format' => 'raw',
+        ],
+        [
+            'label' => 'Уникальность',
+            'value' => function($data)
+            {
+                $id_uniqueness = $data->IDuniqueness;
+                $model_uniqueness = \common\models\Uniqueness::findOne($id_uniqueness);
+                return "<span>{$model_uniqueness->Name}</span>";
+            },
+            'format' => 'raw',
+        ],
+        'SampleArchive',
+        [
+            'label' => 'Модерация',
+            'value' => function($data)
+            {
+                $id_moderation = $data->IDmoderation;
+                $model_moderation = \common\models\Moderation::findOne($id_moderation);
+                return "<span>{$model_moderation->Name}</span>";
+            },
+            'format' => 'raw',
+        ],
 		[
 			'label' => 'Активность',
 			'value' => function($data)
 			{
 				$active = ['Не активно','Активно'];
-				if($data->active==0)
+				if($data->Active==0)
 				{
 					return "<span class='label label-danger'>Не активно</span>";
 				}
-				if($data->active==1)
+				if($data->Active==1)
 				{
 					return "<span class='label label-success'>Активно</span>";
 				}
@@ -58,8 +132,8 @@ use yii\grid\GridView;
 			'value' => function($data)
 			{
 				return "
-					<a href='/backend/web/product/update?id={$data->id}' class='btn btn-info glyphicon glyphicon-pencil'></a>
-					<a href='/backend/web/product/delete?id={$data->id}' class='btn btn-danger glyphicon glyphicon-remove' onClick='return confirm(\"Удалить товар?\") ? true : false;'></a>
+					<a href='/backend/web/product/update?id={$data->ID}' class='btn btn-info glyphicon glyphicon-pencil'></a>
+					<a href='/backend/web/product/delete?id={$data->ID}' class='btn btn-danger glyphicon glyphicon-remove' onClick='return confirm(\"Удалить товар?\") ? true : false;'></a>
 				";
 			},
 			'format' => 'raw',

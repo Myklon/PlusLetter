@@ -4,9 +4,9 @@ namespace common\models;
 
 use Yii;
 
-class Product_user
+class Product_user extends \yii\db\ActiveRecord
 {
-    public static function Product_user(){
+    public static function TableName(){
         return '{{product_user}}';
     }
 

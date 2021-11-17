@@ -1,21 +1,17 @@
 <?php
 namespace backend\controllers;
 
-use common\models\Actions;
+use common\models\MailingServices;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\Product;
-use common\models\Category;
-use common\models\Product_category;
-use backend\models\SearchProduct;
 use yii\data\ActiveDataProvider;
 
 /**
  * Site controller
  */
-class ActionController extends Controller
+class MailingServicesController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -65,13 +61,13 @@ class ActionController extends Controller
      */
     public function actionIndex()
     {
-		$query = Actions::find();
-		
+		$query = MailingServices::find();
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                    'Sort' => SORT_DESC,
                 ]
             ],
             'pagination' => [
@@ -80,41 +76,41 @@ class ActionController extends Controller
         ]);
         return $this->render('index',
 			[
-				'dataProvider'=>$dataProvider
+				'dataProvider'=>$dataProvider,
 			]
 		);
     }
 	
     public function actionUpdate($id)
     {
-        $model = Actions::findOne($id);
-		
-        if($model->load(Yii::$app->request->post()) and $model->save()) 
+        $model = MailingServices::findOne($id);
+
+        if($model->load(Yii::$app->request->post()) and $model->save())
 		{
-			return $this->redirect(['action/index']);
+            return $this->redirect(['mailing-services/index']);
         }
         return $this->render('update',
 			[
-				'model'=>$model
+				'model'=>$model,
 			]
 		);
     }
 	
     public function actionDelete($id)
     {
-        $model = Actions::findOne($id);
+        $model = MailingServices::findOne($id);
 		$model->delete();
-        return $this->redirect(['action/index']);
+        return $this->redirect(['mailing-services/index']);
     }
 
     public function actionCreate()
     {
-        $model = new Actions();
-        if($model->load(Yii::$app->request->post()) and $model->save()) 
+        $model = new MailingServices();
+        if($model->load(Yii::$app->request->post()) and $model->save())
 		{
-            return $this->redirect(['action/index']);
+            return $this->redirect(['mailing-services/index']);
         }
-		else 
+		else
 		{
             return $this->render('create', [
                 'model' => $model,

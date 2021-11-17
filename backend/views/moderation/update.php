@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Corres */
 
-$this->title = 'Редактирование категории';
-$this->params['breadcrumbs'][] = ['label' => 'Категории', 'url' => ['index']];
+$this->title = 'Редактирование статуса модерации';
+$this->params['breadcrumbs'][] = ['label' => 'Статусы модерации', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="corres-update">

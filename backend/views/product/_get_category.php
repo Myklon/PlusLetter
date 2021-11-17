@@ -6,9 +6,9 @@ use yii\helpers\Html;
         <?php foreach ($category_list as $id => $name): ?>
             <li>
 			<?php if(@array_key_exists($id,$category_list_active)): ?>
-				<?= Html::checkbox("RelationsProductCategory[$id]", 1).' '.$name; ?>
+				<?= Html::checkbox("Product_category[$id]", 1).' '.$name; ?>
 			<?php else: ?>
-				<?= Html::checkbox("RelationsProductCategory[$id]", 0).' '.$name; ?>
+				<?= Html::checkbox("Product_category[$id]", 0).' '.$name; ?>
 			<?php endif; ?>
 			</li>
         <?php endforeach; ?>

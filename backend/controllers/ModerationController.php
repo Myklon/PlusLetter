@@ -1,21 +1,18 @@
 <?php
 namespace backend\controllers;
 
-use common\models\Actions;
+use common\models\Moderation;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\Product;
-use common\models\Category;
-use common\models\Product_category;
-use backend\models\SearchProduct;
+use common\models\Uniqueness;
 use yii\data\ActiveDataProvider;
 
 /**
  * Site controller
  */
-class ActionController extends Controller
+class ModerationController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -65,13 +62,13 @@ class ActionController extends Controller
      */
     public function actionIndex()
     {
-		$query = Actions::find();
-		
+		$query = Moderation::find();
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC,
+                    'ID' => SORT_DESC,
                 ]
             ],
             'pagination' => [
@@ -80,41 +77,41 @@ class ActionController extends Controller
         ]);
         return $this->render('index',
 			[
-				'dataProvider'=>$dataProvider
+				'dataProvider'=>$dataProvider,
 			]
 		);
     }
 	
     public function actionUpdate($id)
     {
-        $model = Actions::findOne($id);
-		
-        if($model->load(Yii::$app->request->post()) and $model->save()) 
+        $model = Moderation::findOne($id);
+
+        if($model->load(Yii::$app->request->post()) and $model->save())
 		{
-			return $this->redirect(['action/index']);
+            return $this->redirect(['moderation/index']);
         }
         return $this->render('update',
 			[
-				'model'=>$model
+				'model'=>$model,
 			]
 		);
     }
 	
     public function actionDelete($id)
     {
-        $model = Actions::findOne($id);
+        $model = Moderation::findOne($id);
 		$model->delete();
-        return $this->redirect(['action/index']);
+        return $this->redirect(['moderation/index']);
     }
 
     public function actionCreate()
     {
-        $model = new Actions();
-        if($model->load(Yii::$app->request->post()) and $model->save()) 
+        $model = new Moderation();
+        if($model->load(Yii::$app->request->post()) and $model->save())
 		{
-            return $this->redirect(['action/index']);
+            return $this->redirect(['moderation/index']);
         }
-		else 
+		else
 		{
             return $this->render('create', [
                 'model' => $model,

@@ -2,9 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use mihaildev\ckeditor\CKEditor;
-use mihaildev\elfinder\InputFile;
-use mihaildev\elfinder\ElFinder;
+use yii\helpers\ArrayHelper;
+
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
 ?>
@@ -14,36 +13,81 @@ use mihaildev\elfinder\ElFinder;
 		<div class='col-md-12'>
 			<div class='col-md-6'>
 				<div class='col-md-12'>
-					<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+					<?= $form->field($model, 'Name')->textInput(['maxlength' => true]) ?>
 				</div>
-				<div class='col-md-4'>
-					<?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+				<div class='col-md-12'>
+					<?= $form->field($model, 'ImagePreview')->textInput(['maxlength' => true]) ?>
 				</div>
-				<div class='col-md-4'>
-					<?= $form->field($model, 'weight')->textInput(['maxlength' => true]) ?>
+				<div class='col-md-12'>
+					<?= $form->field($model, 'CardImagePreview')->textInput(['maxlength' => true]) ?>
 				</div>
-				<div class='col-md-4'>
-				<?= $form->field($model, 'active')->checkbox() ?>
+                <div class='col-md-12'>
+                    <?= $form->field($model, 'PreviewPC')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class='col-md-12'>
+                    <?= $form->field($model, 'PreviewMobile')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class='col-md-12'>
+                    <?= $form->field($model, 'Images')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class='col-md-12'>
+                    <?= $form->field($model, 'Description')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class='col-md-12'>
+                    <?= $form->field($model, 'Price')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class='col-md-12'>
+                    <?= $form->field($model, 'Adaptive')->checkbox() ?>
+                </div>
+                <div class='col-md-12'>
+                    <?= $form->field($model, 'SampleArchive')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class='col-md-12'>
+                <?php
+                        $license = \common\models\License::find()->all();
+                        $items = ArrayHelper::map($license,'ID','Name');
+                        $params = [
+
+                        ];
+                        echo $form->field($model, 'IDlicense')->dropDownList($items,$params);
+                    ?>
+                </div>
+                <div class='col-md-12'>
+                    <?php
+                    $license = \common\models\Uniqueness::find()->all();
+                    $items = ArrayHelper::map($license,'ID','Name');
+                    $params = [
+
+                    ];
+                    echo $form->field($model, 'IDuniqueness')->dropDownList($items,$params);
+                    ?>
+                </div>
+                <div class='col-md-12'>
+                    <?php
+                    $license = \common\models\Moderation::find()->all();
+                    $items = ArrayHelper::map($license,'ID','Name');
+                    $params = [
+
+                    ];
+                    echo $form->field($model, 'IDmoderation')->dropDownList($items,$params);
+                    ?>
+                </div>
+				<div class='col-md-12'>
+				<?= $form->field($model, 'Active')->checkbox() ?>
 			</div>
 			</div>
 			<div class='col-md-6'>
+
 				<div class='col-md-8'>
-					<?=$this->render('_get_category',['category_list'=>$category_list,'model'=>$model,'category_list_active'=>$category_list_active]);?>
+                    <?=$this->render('_get_category',['category_list'=>$category_list,'model'=>$model,'category_list_active'=>$category_list_active]);?>
 				</div>
+                <div class='col-md-8'>
+                    <?=$this->render('_get_mailingservices',['mailingservices_list'=>$mailingservices_list,'model'=>$model,'mailingservices_list_active'=>$mailingservices_list_active]);?>
+                </div>
+                <div class='col-md-8'>
+                    <?=$this->render('_get_mailsystems',['mailsystems_list'=>$mailsystems_list,'model'=>$model,'mailsystems_list_active'=>$mailsystems_list_active]);?>
+                </div>
 			</div>
-		</div>
-		<div class='col-md-12'>
-			<div class='col-md-3'>
-				<?= $form->field($model, 'image_file')->fileInput([]) ?>
-			</div>
-		</div>
-		<div class='col-md-12'>
-			<label class="control-label">Описание товара</label>
-			<?php echo \mihaildev\ckeditor\CKEditor::widget(['model' => $model, 'attribute' => 'description', 'editorOptions' => \mihaildev\elfinder\ElFinder::ckeditorOptions(['elfinder', 'path' => '/'], ['preset' => 'standart', 'allowedContent' => true, 'height' => '200px'])]); ?>
-		</div>
-		<div class='col-md-12'>
-			<label class="control-label">Состав</label>
-			<?php echo \mihaildev\ckeditor\CKEditor::widget(['model' => $model, 'attribute' => 'consist', 'editorOptions' => \mihaildev\elfinder\ElFinder::ckeditorOptions(['elfinder', 'path' => '/'], ['preset' => 'standart', 'allowedContent' => true, 'height' => '200px'])]); ?><p/>
 		</div>
 		<div class='col-md-12'>
 			<div class="form-group">

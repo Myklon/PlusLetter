@@ -4,9 +4,9 @@ namespace common\models;
 
 use Yii;
 
-class License
+class License extends \yii\db\ActiveRecord
 {
-    public static function License(){
+    public static function TableName(){
         return '{{license}}';
     }
 
@@ -15,6 +15,7 @@ class License
         return [
             [['ID'], 'integer'],
             [['Name'], 'string', 'max' => 30],
+            [['Percent'], 'integer'],
         ];
     }
 
@@ -22,6 +23,7 @@ class License
         return [
             'ID' => 'ID',
             'Name' => 'Название',
+            'Percent' => 'Процент',
         ];
     }
 }

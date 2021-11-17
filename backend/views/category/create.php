@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Corres */
 
-$this->title = 'Создания категории';
-$this->params['breadcrumbs'][] = ['label' => 'Список категорий', 'url' => ['index']];
+$this->title = 'Создание категории';
+$this->params['breadcrumbs'][] = ['label' => 'Категории', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="corres-create">

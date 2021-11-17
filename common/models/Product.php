@@ -4,9 +4,9 @@ namespace common\models;
 
 use Yii;
 
-class Product
+class Product extends \yii\db\ActiveRecord
 {
-    public static function Product(){
+    public static function TableName(){
         return '{{product}}';
     }
 
@@ -20,8 +20,8 @@ class Product
             [['PreviewPC'], 'string', 'max' => 255],
             [['PreviewMobile'], 'string', 'max' => 255],
             [['Images'], 'string', 'max' => 255],
-            [['Description'], 'stream'],
-            [['Price'], 'float'],
+            [['Description'], 'string'],
+            [['Price'], 'integer'],
             [['Adaptive'], 'integer'],
             [['IDlicense'], 'integer'],
             [['IDuniqueness'], 'integer'],

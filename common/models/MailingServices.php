@@ -3,10 +3,11 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
-class MailingServices
+class MailingServices extends \yii\db\ActiveRecord
 {
-    public static function MailingServices(){
+    public static function TableName(){
         return '{{mailingservices}}';
     }
 
@@ -28,4 +29,10 @@ class MailingServices
             'Active' => 'Активное',
         ];
     }
+
+    public static function getAllMailingServices_ListArray()
+    {
+        return ArrayHelper::map(MailingServices::find()->OrderBy(['Sort'=>SORT_DESC])->asArray()->all(),'ID','Name');
+    }
+
 }

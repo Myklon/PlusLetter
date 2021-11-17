@@ -4,9 +4,9 @@ namespace common\models;
 
 use Yii;
 
-class OrderTable
+class OrderTable extends \yii\db\ActiveRecord
 {
-    public static function OrderTable(){
+    public static function TableName(){
         return '{{ordertable}}';
     }
 

@@ -14,12 +14,6 @@ use yii\widgets\ActiveForm;
 				<div class='col-md-12'>
 					<?= $form->field($model, 'Name')->textInput(['maxlength' => true]) ?>
 				</div>
-                <div class='col-md-12'>
-                    <?= $form->field($model, 'Sort')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class='col-md-4'>
-                    <?= $form->field($model, 'Active')->checkbox() ?>
-                </div>
 			</div>
 		</div>
     <div class='col-md-12'>

@@ -4,9 +4,9 @@ namespace common\models;
 
 use Yii;
 
-class Settings
+class Settings extends \yii\db\ActiveRecord
 {
-    public static function Settings(){
+    public static function TableName(){
         return '{{settings}}';
     }
 

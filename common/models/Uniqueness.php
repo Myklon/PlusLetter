@@ -4,9 +4,9 @@ namespace common\models;
 
 use Yii;
 
-class Uniqueness
+class Uniqueness extends \yii\db\ActiveRecord
 {
-    public static function Uniqueness(){
+    public static function TableName(){
         return '{{uniqueness}}';
     }
 
