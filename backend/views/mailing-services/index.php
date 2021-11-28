@@ -17,7 +17,16 @@ use yii\grid\GridView;
     ],
     'columns' => [
             'Name',
-        'Sort',[
+        [
+            'label' => 'Изображение',
+            'value' => function($data)
+            {
+                return "<img src='/frontend/web/uploads/mail-icons/{$data->Image}' width='50px'>";
+            },
+            'format' => 'raw',
+        ],
+        'Sort',
+        [
             'label' => 'Активность',
             'value' => function($data)
             {

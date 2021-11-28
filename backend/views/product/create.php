@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Corres */
 
-$this->title = 'Создания товара';
+$this->title = 'Создание товара';
 $this->params['breadcrumbs'][] = ['label' => 'Список товаров', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

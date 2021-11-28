@@ -16,6 +16,7 @@ class MailSystems extends \yii\db\ActiveRecord
         return [
             [['ID'], 'integer'],
             [['Name'], 'string', 'max' => 30],
+            [['Image'], 'string', 'max' => 255],
             [['Sort'], 'integer'],
             [['Active'], 'integer'],
         ];
@@ -25,6 +26,7 @@ class MailSystems extends \yii\db\ActiveRecord
         return [
             'ID' => 'ID',
             'Name' => 'Название',
+            'Image' => 'Изображение',
             'Sort' => 'Порядок',
             'Active' => 'Активное',
         ];

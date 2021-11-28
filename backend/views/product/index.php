@@ -22,11 +22,32 @@ use yii\grid\GridView;
     ],
     'columns' => [
             'Name',
+        'Price',
+        [
+            'label' => 'Лицензия',
+            'value' => function($data)
+            {
+                $id_adaptive = $data->IDlicense;
+                $model_license = License::findOne($id_adaptive);
+                return "<span>{$model_license->Name}</span>";
+            },
+            'format' => 'raw',
+        ],
+        [
+            'label' => 'Уникальность',
+            'value' => function($data)
+            {
+                $id_uniqueness = $data->IDuniqueness;
+                $model_uniqueness = \common\models\Uniqueness::findOne($id_uniqueness);
+                return "<span>{$model_uniqueness->Name}</span>";
+            },
+            'format' => 'raw',
+        ],
         [
             'label' => 'Превью изображение',
             'value' => function($data)
             {
-                return "<img src='/frontend/web/uploads/items/{$data->ImagePreview}' width='50px'>";
+                return "<img src='/frontend/web/uploads/items/{$data->ImagePreview}' width='75px'>";
             },
             'format' => 'raw',
         ],
@@ -34,36 +55,20 @@ use yii\grid\GridView;
             'label' => 'Карточка товара',
             'value' => function($data)
             {
-                return "<img src='/frontend/web/uploads/items/{$data->CardImagePreview}' width='50px'>";
+                return "<img src='/frontend/web/uploads/items/{$data->CardImagePreview}' width='75px'>";
             },
             'format' => 'raw',
         ],
-        [
-            'label' => 'Превью для компьютеров',
-            'value' => function($data)
-            {
-                return "<img src='/frontend/web/uploads/items/{$data->PreviewPC}' width='50px'>";
-            },
-            'format' => 'raw',
-        ],
-        [
-            'label' => 'Превью для телефонов',
-            'value' => function($data)
-            {
-                return "<img src='/frontend/web/uploads/items/{$data->PreviewMobile}' width='50px'>";
-            },
-            'format' => 'raw',
-        ],
+
         [
             'label' => 'Изображение в описании',
             'value' => function($data)
             {
-                return "<img src='/frontend/web/uploads/items/{$data->Images}' width='50px'>";
+                return "<img src='/frontend/web/uploads/items/{$data->Images}' width='75px'>";
             },
             'format' => 'raw',
         ],
-        'Description',
-		'Price',
+
         [
             'label' => 'Адаптивность',
             'value' => function($data)
@@ -80,27 +85,6 @@ use yii\grid\GridView;
             },
             'format' => 'raw',
         ],
-        [
-            'label' => 'Лицензия',
-            'value' => function($data)
-            {
-                $id_adaptive = $data->IDlicense;
-                $model_license = License::findOne($id_adaptive);
-                    return "<span>{$model_license->Name}</span>";
-            },
-            'format' => 'raw',
-        ],
-        [
-            'label' => 'Уникальность',
-            'value' => function($data)
-            {
-                $id_uniqueness = $data->IDuniqueness;
-                $model_uniqueness = \common\models\Uniqueness::findOne($id_uniqueness);
-                return "<span>{$model_uniqueness->Name}</span>";
-            },
-            'format' => 'raw',
-        ],
-        'SampleArchive',
         [
             'label' => 'Модерация',
             'value' => function($data)
